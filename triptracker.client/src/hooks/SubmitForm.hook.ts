@@ -1,7 +1,9 @@
 import storageService from "../services/storage.service";
 import TripDto from "../../../triptracker.models/tripDto";
+import { FormEvent } from "react";
 
-function submitForm(startAddress : string, endAddress : string, date : Date) {
+function submitForm(event : FormEvent, startAddress : string, endAddress : string, date : Date) {
+    event.preventDefault();
     const StorageService = new storageService();
 
     const trip : TripDto =  {
