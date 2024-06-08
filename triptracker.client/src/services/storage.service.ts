@@ -1,4 +1,4 @@
-import TripDto from '../../../triptracker.models/tripDto'
+import TripDto from '../../../triptracker.models/ts/tripDto'
 
 /** Reqs/features:
  * db access

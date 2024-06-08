@@ -1,5 +1,5 @@
 import storageService from "../services/storage.service";
-import TripDto from "../../../triptracker.models/tripDto";
+import TripDto from "../../../triptracker.models/ts/tripDto";
 import { FormEvent } from "react";
 
 function submitForm(event : FormEvent, startAddress : string, endAddress : string, date : Date) {
