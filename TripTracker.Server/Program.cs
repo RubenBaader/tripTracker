@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using TripTracker.Server.Data;
+
 namespace TripTracker.Server
 {
     public class Program
@@ -13,6 +16,10 @@ namespace TripTracker.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContextPool<TripDBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("TripDbConnection"))
+                );
 
             var app = builder.Build();
 
