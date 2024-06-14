@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|solutionrelative:triptracker.server\\data\\tripdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|c:\\users\\bruger\\documents\\github\\triptracker\\triptracker.server\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|solutionrelative:triptracker.server\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|c:\\users\\bruger\\documents\\github\\triptracker\\triptracker.server\\entities\\trip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|c:\\users\\bruger\\documents\\github\\triptracker\\triptracker.server\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|solutionrelative:triptracker.server\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|c:\\users\\bruger\\documents\\github\\triptracker\\triptracker.server\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|solutionrelative:triptracker.server\\entities\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{353B1646-0867-45A6-AE13-F8B74B0A6A6D}|TripTracker.Server\\TripTracker.Server.csproj|c:\\users\\bruger\\documents\\github\\triptracker\\triptracker.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 302,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +50,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "20240614074831_InitialMigration.cs",
+              "DocumentMoniker": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs",
+              "RelativeDocumentMoniker": "TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs",
+              "ToolTip": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs",
+              "RelativeToolTip": "TripTracker.Server\\Migrations\\20240614074831_InitialMigration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T07:48:31.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Program.cs",
               "RelativeDocumentMoniker": "TripTracker.Server\\Program.cs",
@@ -64,7 +81,7 @@
               "RelativeDocumentMoniker": "TripTracker.Server\\Data\\TripDBContext.cs",
               "ToolTip": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Data\\TripDBContext.cs",
               "RelativeToolTip": "TripTracker.Server\\Data\\TripDBContext.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAABMAAAAvAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABcAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T07:04:07.399Z",
               "EditorCaption": ""
@@ -77,7 +94,7 @@
               "RelativeDocumentMoniker": "TripTracker.Server\\Entities\\Trip.cs",
               "ToolTip": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Entities\\Trip.cs",
               "RelativeToolTip": "TripTracker.Server\\Entities\\Trip.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAwAAAAmAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA5wAwAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T06:52:00.741Z",
               "EditorCaption": ""
@@ -90,20 +107,20 @@
               "RelativeDocumentMoniker": "TripTracker.Server\\Entities\\User.cs",
               "ToolTip": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Entities\\User.cs",
               "RelativeToolTip": "TripTracker.Server\\Entities\\User.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAxwAsAAAA7AAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAwAoAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T04:48:08.345Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Address.cs",
               "DocumentMoniker": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Entities\\Address.cs",
               "RelativeDocumentMoniker": "TripTracker.Server\\Entities\\Address.cs",
               "ToolTip": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\Entities\\Address.cs",
               "RelativeToolTip": "TripTracker.Server\\Entities\\Address.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAwAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-12T11:25:33.879Z",
               "EditorCaption": ""

@@ -12,12 +12,11 @@ namespace TripTracker.Server.Entities
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
 
-        [ForeignKey(nameof(StartAddress))]
         public int StartAddressId { get; set; }
         public Address StartAddress { get; set; }
-
-        [ForeignKey(nameof(EndAddress))]
+        
         public int EndAddressId { get; set; }
         public Address EndAddress { get; set; }
+
     }
 }
