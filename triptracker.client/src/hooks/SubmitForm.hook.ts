@@ -9,7 +9,8 @@ function submitForm(event : FormEvent, startAddress : string, endAddress : strin
     const trip : TripDto =  {
         StartAddress : startAddress,
         EndAddress : endAddress,
-        TripDate : date
+        StartTime : date,
+        EndTime : date
     }
     StorageService.createTrip(trip);
 

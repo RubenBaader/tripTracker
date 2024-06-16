@@ -1,7 +1,8 @@
 type TripDto = {
     StartAddress : string,
     EndAddress : string,
-    TripDate : Date
+    StartTime : Date
+    EndTime : Date
 }
 
 export default TripDto;
