@@ -11,8 +11,8 @@ namespace TripTracker.Server.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
-        public ICollection<Address> Addresses { get; set; }
-        public ICollection<Trip> Trips { get; set; }
+        public ICollection<Address>? Addresses { get; set; }
+        public ICollection<Trip>? Trips { get; set; }
 
     }
 }

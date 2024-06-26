@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using TripTracker.Server.Data;
+using TripTracker.Server.Repositories;
+using TripTracker.Server.Repositories.Contracts;
 
 namespace TripTracker.Server
 {
@@ -8,6 +10,8 @@ namespace TripTracker.Server
     {
         public static void Main(string[] args)
         {
+            var CorsPolicy = "_corsPolicy";
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -21,6 +25,17 @@ namespace TripTracker.Server
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TripDbConnection"))
                 );
 
+            builder.Services.AddScoped<ITripRepository, TripRepository>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: CorsPolicy,
+                                policy =>
+                                {
+                                    policy.WithOrigins("http://localhost:5173", "https://localhost:5173");
+                                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,6 +46,19 @@ namespace TripTracker.Server
             }
 
             app.UseHttpsRedirection();
+
+            //app.UseCors(policy => 
+            //    policy.WithOrigins("http://localhost:5173/", "https://localhost:5173/")
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //);
+
+            //app.UseCors(policy => 
+            //    policy.AllowAnyOrigin()
+            //    .AllowAnyHeader()
+            //    .AllowAnyMethod()
+            //);
+            app.UseCors(CorsPolicy);
 
             app.UseAuthorization();
 

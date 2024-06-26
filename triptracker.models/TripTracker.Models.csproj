@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="C#\TripDto.cs" />
+    <Compile Include="C#\UserDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ts\tripDto.ts" />

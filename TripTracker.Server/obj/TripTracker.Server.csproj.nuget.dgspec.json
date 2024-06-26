@@ -4,6 +4,21 @@
     "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\TripTracker.Server.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj",
+        "projectName": "TripTracker.Models",
+        "projectPath": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj",
+        "frameworks": {
+          "net40": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net40": {}
+      }
+    },
     "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\TripTracker.Server\\TripTracker.Server.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +42,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj": {
+                "projectPath": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

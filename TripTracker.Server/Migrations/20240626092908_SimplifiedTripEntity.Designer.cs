@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TripTracker.Server.Data;
 
@@ -11,9 +12,11 @@ using TripTracker.Server.Data;
 namespace TripTracker.Server.Migrations
 {
     [DbContext(typeof(TripDBContext))]
-    partial class TripDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240626092908_SimplifiedTripEntity")]
+    partial class SimplifiedTripEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

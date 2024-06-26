@@ -10,10 +10,19 @@ class storageService {
     /**
      * Create a post request to server in order to store the trip input in the db
      */
-    public createTrip(trip : TripDto) {
-        console.log("Hello!")
-        console.log(trip);
-        return trip;
+    public async createTrip (tripDto : TripDto) {
+        try {
+            const response = await fetch("https://localhost:7035/api/trips", {
+                method: "POST",
+                body: JSON.stringify(tripDto),
+            })
+            console.log(response);
+            return response;
+            
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     public getTrips(userId : number) : TripDto[] {

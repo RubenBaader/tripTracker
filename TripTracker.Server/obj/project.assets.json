@@ -1589,6 +1589,15 @@
             "rid": "win"
           }
         }
+      },
+      "TripTracker.Models/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/TripTracker.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TripTracker.Models.dll": {}
+        }
       }
     }
   },
@@ -4512,6 +4521,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "TripTracker.Models/1.0.0": {
+      "type": "project",
+      "path": "../triptracker.models/TripTracker.Models.csproj",
+      "msbuildProject": "../triptracker.models/TripTracker.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4519,7 +4533,8 @@
       "Microsoft.EntityFrameworkCore >= 8.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.6",
-      "Swashbuckle.AspNetCore >= 6.4.0"
+      "Swashbuckle.AspNetCore >= 6.4.0",
+      "TripTracker.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4548,7 +4563,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj": {
+              "projectPath": "C:\\Users\\Bruger\\Documents\\GitHub\\tripTracker\\triptracker.models\\TripTracker.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
