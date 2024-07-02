@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TripTracker.Models;
 using TripTracker.Server.Repositories.Contracts;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TripTracker.Server.Controllers
 {
@@ -18,30 +17,30 @@ namespace TripTracker.Server.Controllers
         }
 
         [HttpPost]
-        //public TripDto PostTrip(string address)
-        //public ActionResult<TripDto> PostTrip([FromBody] TripDto tripDto)
-        public ActionResult<TripDto> PostTrip(string startAddress, string endAddress, DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<TripDto>> PostTrip([FromForm] TripDto tripDto)
         {
             try
             {
                 var userId = 1;
 
-                var tripDto = new TripDto
+                if (!ModelState.IsValid)
                 {
-                    StartAddress = startAddress,
-                    EndAddress = endAddress,
-                    StartTime = startDate,
-                    EndTime = endDate,
-                };
+                    return BadRequest(ModelState);
+                }
 
-                tripRepository.SaveTrip(tripDto, userId);
-                return Ok(tripDto);
+                var newTrip = await tripRepository.SaveTrip(tripDto, userId);
+
+                if (newTrip == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(newTrip);
 
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

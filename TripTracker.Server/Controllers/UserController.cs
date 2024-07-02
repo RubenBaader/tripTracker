@@ -25,7 +25,7 @@ namespace TripTracker.Server.Controllers
 
                 if (data == null)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
 
                 return Ok(data);
@@ -42,16 +42,21 @@ namespace TripTracker.Server.Controllers
         {
             try
             {
-                var rawData = await tripRepository.GetUser(id);
+                var rawUser = await tripRepository.GetUser(id);
 
-                var user = new UserDto
+                if (rawUser == null)
+                {
+                    return NoContent();
+                }
+
+                var userDto = new UserDto
                 {
                     Id = id,
-                    Name = rawData.Name,
-                    Email = rawData.Email,
+                    Name = rawUser.Name,
+                    Email = rawUser.Email,
                 };
 
-                return Ok(user);
+                return Ok(userDto);
             }
             catch (Exception)
             {
