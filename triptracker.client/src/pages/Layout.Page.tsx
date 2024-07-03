@@ -1,21 +1,22 @@
 import { Outlet, Link } from "react-router-dom";
+import "./Layout.Page.css";
 
 const Layout = () => {
     return(
-        <>
+        <div className="app-skeleton">
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" className="button">Home</Link>
                     </li>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <Link to="/login" className="button">Login</Link>
                     </li>
                 </ul>
             </nav>
 
             <Outlet />
-        </>
+        </div>
     );
 }
 

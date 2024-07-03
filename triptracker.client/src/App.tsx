@@ -1,7 +1,6 @@
 import './App.css'
-import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Layout from './pages/Layout'
+import Layout from './pages/Layout.Page'
 import ErrorPage from './pages/Error.Page'
 import Home from './pages/Home.Page'
 import Login from './pages/Login.Page'
