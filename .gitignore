@@ -394,3 +394,5 @@ FodyWeavers.xsd
 /FileTransfer.Api/Migrations
 /FileTransfer.Api/appsettings.Development.json
 /FileTransfer.Api/appsettings.json
+/TripTracker.Server/obj/Debug/net8.0/TripTracker.Server.AssemblyInfo.cs
+/TripTracker.Server/obj/Debug/net8.0/TripTracker.Server.AssemblyInfoInputs.cache
