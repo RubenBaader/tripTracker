@@ -1,12 +1,21 @@
 import './App.css'
-import { TripForm } from './components/TripForm'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Layout from './pages/Layout.Page'
+import ErrorPage from './pages/Error.Page'
+import Home from './pages/Home.Page'
+import Login from './pages/Login.Page'
 
 function App() {
   return (
-    <>
-      <h1>Hi mom</h1>
-      <TripForm />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={ <Home /> } />
+          <Route path='login' element={ <Login /> } />
+          <Route path='*' element={ <ErrorPage /> } />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
