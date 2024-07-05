@@ -12,12 +12,22 @@ class storageService {
      */
     public async createTrip (tripDto : TripDto) {
         try {
+            const payload = new FormData();
+
+            payload.append("StartAddress", tripDto.StartAddress);
+            payload.append("EndAddress", tripDto.EndAddress);
+            payload.append("StartTime", tripDto.StartTime.toISOString());
+            payload.append("EndTime", tripDto.EndTime.toISOString());
+
             const response = await fetch("https://localhost:7035/api/trips", {
                 method: "POST",
-                body: JSON.stringify(tripDto),
+                body: payload
             })
-            console.log(response);
-            return response;
+
+            const data = await response.json();
+
+            console.log(data);
+            return data;
             
         } catch (error) {
             console.log(error);
