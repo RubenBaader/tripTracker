@@ -3,9 +3,28 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
 }
 
-form {
+:root {
+  /* Global vars */
+  --main-bg-theme: hsl(0, 0%, 85%);
+  --main-contrast:hsl(0, 0%, 15%); 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg-theme: hsl(0, 0%, 15%);
+    --main-contrast: hsl(0, 0%, 85%); 
+  }
+}
+
+body {
+  background-color: var(--main-bg-theme);
+  color: var(--main-contrast);
+}
+
+form {  
   display: flex;
   flex-direction: column;
   gap: 0.1em;
