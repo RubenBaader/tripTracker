@@ -40,6 +40,30 @@ class storageService {
         const trips : TripDto[] = [];
         return trips;
     }
+
+    public async createUser(name : string, email : string, password : string) {
+        try {
+            const payload = new FormData();
+
+            payload.append("Name", name);
+            payload.append("Email", email);
+            payload.append("Password", password);
+
+            const response = await fetch("https://localhost:7035/api/user", {
+                method: "POST",
+                body: payload
+            })
+
+            const data = await response.json();
+
+            console.log(data);
+            return data;
+            
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
 }
 
 
