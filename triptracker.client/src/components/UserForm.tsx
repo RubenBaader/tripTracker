@@ -8,9 +8,20 @@ const UserForm = () => {
 
     return(
         <form onSubmit={(event) => submitUser(event, name, email, password)}>
-            <input type="text" name="name" onChange={e => setName(e.target.value)} />
-            <input type="email" name="email" onChange={e => setEmail(e.target.value)} />
-            <input type="password" name="pass" onChange={e => setPassword(e.target.value)} />
+
+            <div>
+                <input type="text" name="name" onChange={e => setName(e.target.value)} />
+                <label htmlFor="name">Name</label>
+            </div>
+            <div>
+                <input type="email" name="email" onChange={e => setEmail(e.target.value)} />
+                <label htmlFor="email">Email</label>
+            </div>
+            <div>
+                <input type="password" name="pass" onChange={e => setPassword(e.target.value)} />
+                <label htmlFor="password">Password</label>
+            </div>
+            
             <button type='submit'>
                 Submit
             </button>
