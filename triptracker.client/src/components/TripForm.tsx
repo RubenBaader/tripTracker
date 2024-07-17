@@ -1,4 +1,4 @@
-import submitUser from "../hooks/SubmitUser.hook"
+import submitUser from "../hooks/CreateTrip.hook"
 import { useState } from "react"
 
 export const TripForm = () => {
