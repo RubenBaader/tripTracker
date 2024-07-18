@@ -1,13 +1,15 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 
-}
+} */
 
+/**
+  * Global
+**/
 :root {
-  /* Global vars */
   --main-bg-theme: hsl(0, 0%, 85%);
   --main-contrast:hsl(0, 0%, 15%); 
 }
@@ -17,6 +19,10 @@
     --main-bg-theme: hsl(0, 0%, 15%);
     --main-contrast: hsl(0, 0%, 85%); 
   }
+
+  * {
+    color-scheme: dark;
+  }
 }
 
 body {
@@ -24,10 +30,15 @@ body {
   color: var(--main-contrast);
 }
 
+/**
+* Forms
+**/
+
 form {  
   display: flex;
   flex-direction: column;
-  gap: 0.1em;
+  gap: 0.2em;
+  width: fit-content;
   max-width: 90%;
 }
 
@@ -35,11 +46,27 @@ form > div {
   display: flex;
   gap: 0.5em;
   justify-content:space-between;
-  /* align-self: ; */
+}
+
+form input {
+  display: inline-block;
+  min-width: 30ch;
+  line-height: 175%;
+}
+
+/**
+* Buttons
+**/
+
+button {
+  padding: 0.75rem;
 }
 
 .button {
+  color: var(--main-contrast);
+  background-color: var(--main-bg-theme);
   padding: 1rem 2em;
   border-radius: 5px;
-  background-color: aliceblue;
+  border: 2px outset var(--main-contrast);
+  filter: drop-shadow(1px 1px 1px var(--main-contrast));
 }
