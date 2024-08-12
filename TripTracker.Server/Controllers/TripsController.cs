@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TripTracker.Models;
 using TripTracker.Server.Repositories.Contracts;
@@ -14,6 +15,15 @@ namespace TripTracker.Server.Controllers
         public TripsController(ITripRepository tripRepository)
         {
             this.tripRepository = tripRepository;
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public async Task<ActionResult<string>> Test() 
+        {
+            
+            // var output = JsonConvert
+            return Ok(new Dictionary<string,JsonNode>{["Message"] = "I'm an endpoint, short and stout"});
         }
 
         [HttpPost]

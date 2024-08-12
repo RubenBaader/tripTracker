@@ -1,12 +1,15 @@
 import TripDto from '../../../triptracker.models/ts/tripDto'
 
-/** Reqs/features:
- * db access
- * http requests
- * facilitate client <=> server data transfer 
+/** 
+ * facilitate client-server data transfer 
  */
 
 class storageService {
+    /* Import urls from environment */
+    private readonly baseUrl = import.meta.env.VITE_SERVER_BASEURL;
+    private readonly tripsUrl = import.meta.env.VITE_SERVER_BASEURL_TRIPS;
+    private readonly userUrl = import.meta.env.VITE_SERVER_BASEURL_USER;
+
     /**
      * Create a post request to server in order to store the trip input in the db
      */
@@ -19,7 +22,7 @@ class storageService {
             payload.append("StartTime", tripDto.StartTime.toISOString());
             payload.append("EndTime", tripDto.EndTime.toISOString());
 
-            const response = await fetch("https://localhost:7035/api/trips", {
+            const response = await fetch(this.tripsUrl, {
                 method: "POST",
                 body: payload
             })
@@ -35,6 +38,20 @@ class storageService {
 
     }
 
+    /**
+     * Test connection
+     **/
+    public async test() : Promise<string> {
+
+        const response = await fetch(import.meta.env.VITE_SERVER_BASEURL_TRIPS + "/test");
+        console.log(response);
+        const data = await response.json();
+        return data;
+    }
+
+    /**
+     * Request all trips from server
+     */
     public getTrips(userId : number) : TripDto[] {
         console.log(userId);
         const trips : TripDto[] = [];
@@ -49,7 +66,7 @@ class storageService {
             payload.append("Email", email);
             payload.append("Password", password);
 
-            const response = await fetch("https://localhost:7035/api/user", {
+            const response = await fetch(this.userUrl, {
                 method: "POST",
                 body: payload
             })
@@ -72,7 +89,7 @@ class storageService {
             payload.append("NameOrEmail", nameOrEmail);
             payload.append("Password", password);
 
-            const response = await fetch("https://localhost:7035/api/user/login", {
+            const response = await fetch(this.userUrl + "/login", {
                 method: "POST",
                 body: payload
             })

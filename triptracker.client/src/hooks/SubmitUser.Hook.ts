@@ -6,6 +6,7 @@ function submitUser(event : FormEvent, name : string, email : string, password :
     const storage = new storageService();
 
     storage.createUser(name, email, password);
+    // storage.test();
 }
 
 export default submitUser;
