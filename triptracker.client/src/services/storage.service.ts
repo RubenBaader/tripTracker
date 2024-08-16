@@ -52,10 +52,20 @@ class storageService {
     /**
      * Request all trips from server
      */
-    public getTrips(userId : number) : TripDto[] {
-        console.log(userId);
-        const trips : TripDto[] = [];
-        return trips;
+    public async getTrips(userId : number) {
+        try {
+            const response = await fetch(this.tripsUrl + "?" + new URLSearchParams ({
+                "userId" : userId.toString()
+                })
+            )
+            const data : TripDto[] = await response.json()
+
+            // console.log(data);
+
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     public async createUser(name : string, email : string, password : string) {

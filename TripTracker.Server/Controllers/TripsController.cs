@@ -26,6 +26,28 @@ namespace TripTracker.Server.Controllers
             return Ok(new Dictionary<string,JsonNode>{["Message"] = "I'm an endpoint, short and stout"});
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips(int userId)
+        {
+            try
+            {
+                var trips = await tripRepository.GetTrips(userId);
+
+                if (trips == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(trips);
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                "Error retrieving data from the database");
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<TripDto>> PostTrip([FromForm] TripDto tripDto)
         {

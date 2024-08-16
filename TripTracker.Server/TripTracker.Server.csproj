@@ -20,4 +20,10 @@
     <ProjectReference Include="..\triptracker.models\TripTracker.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

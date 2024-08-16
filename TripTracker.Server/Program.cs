@@ -22,7 +22,7 @@ namespace TripTracker.Server
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContextPool<TripDBContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("TripDbConnection"))
+                options.UseSqlServer(builder.Configuration.GetConnectionString("TripTrackerConnection"))
                 );
 
             builder.Services.AddScoped<ITripRepository, TripRepository>();
@@ -32,7 +32,8 @@ namespace TripTracker.Server
                 options.AddPolicy(name: CorsPolicy,
                                 policy =>
                                 {
-                                    policy.WithOrigins("http://localhost:5173", "https://localhost:5173");
+                                    policy.WithOrigins("http://localhost:5173", "https://localhost:5173")
+                                        .AllowAnyMethod();
                                 });
             });
 

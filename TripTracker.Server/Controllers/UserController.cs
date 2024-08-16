@@ -37,7 +37,7 @@ namespace TripTracker.Server.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             try

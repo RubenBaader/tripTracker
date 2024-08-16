@@ -1,4 +1,5 @@
-﻿using TripTracker.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TripTracker.Models;
 using TripTracker.Server.Data;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;
@@ -97,22 +98,23 @@ namespace TripTracker.Server.Repositories
             
             
         }
-        public void DeleteTrip(int tripId)
+
+        public async Task<IEnumerable<TripDto>> GetTrips(int userId)
         {
-            throw new NotImplementedException();
+            var data = await (from trip in  tripDBContext.Trips
+                              where trip.UserId == userId
+                              select new TripDto
+                              {
+                                  StartAddress = trip.StartAddress,
+                                  EndAddress = trip.EndAddress,
+                                  StartTime = trip.StartTime,
+                                  EndTime = trip.EndTime,
+                              }).ToListAsync();
+
+            return data;
         }
 
-        public IEnumerable<TripDto> GetTrips(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<TripDto>> ITripRepository.GetTrips(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task ITripRepository.DeleteTrip(int tripId)
+        public Task DeleteTrip(int tripId)
         {
             throw new NotImplementedException();
         }
