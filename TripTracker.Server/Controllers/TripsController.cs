@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TripTracker.Models;
+using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;
 
 namespace TripTracker.Server.Controllers
@@ -49,7 +49,7 @@ namespace TripTracker.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<TripDto>> PostTrip([FromForm] TripDto tripDto)
+        public async Task<ActionResult<Trip>> PostTrip([FromForm] TripDto tripDto)
         {
             try
             {

@@ -17,10 +17,10 @@ class storageService {
         try {
             const payload = new FormData();
 
-            payload.append("StartAddress", tripDto.StartAddress);
-            payload.append("EndAddress", tripDto.EndAddress);
-            payload.append("StartTime", tripDto.StartTime.toISOString());
-            payload.append("EndTime", tripDto.EndTime.toISOString());
+            payload.append("StartAddress", tripDto.startAddress);
+            payload.append("EndAddress", tripDto.endAddress);
+            payload.append("StartTime", tripDto.startTime.toISOString());
+            payload.append("EndTime", tripDto.endTime.toISOString());
 
             const response = await fetch(this.tripsUrl, {
                 method: "POST",
@@ -60,7 +60,7 @@ class storageService {
             )
             const data : TripDto[] = await response.json()
 
-            // console.log(data);
+            console.log(data);
 
             return data;
         } catch (error) {

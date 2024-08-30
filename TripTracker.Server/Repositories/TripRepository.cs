@@ -66,7 +66,7 @@ namespace TripTracker.Server.Repositories
         }
 
         //Trips
-        public async Task<TripDto> SaveTrip(TripDto tripDto, int userId)
+        public async Task<Trip> SaveTrip(TripDto tripDto, int userId)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace TripTracker.Server.Repositories
                 }
 
                 await tripDBContext.SaveChangesAsync();
-                return tripDto;
+                return data.Entity;
             }
             catch (Exception)
             {
@@ -105,6 +105,7 @@ namespace TripTracker.Server.Repositories
                               where trip.UserId == userId
                               select new TripDto
                               {
+                                  Id = trip.TripId,
                                   StartAddress = trip.StartAddress,
                                   EndAddress = trip.EndAddress,
                                   StartTime = trip.StartTime,

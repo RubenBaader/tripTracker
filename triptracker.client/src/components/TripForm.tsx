@@ -1,13 +1,17 @@
 import submitUser from "../hooks/CreateTrip.hook"
 import { useState } from "react"
+import Autocomplete from "./Autocomplete.Component";
+
 
 export const TripForm = () => {
   const [startAddress, setStartAddress] = useState<string>('');
   const [endAddress, setEndAddress] = useState<string>('');
   const [tripDate, setTripDate] = useState<Date | null>(null);
 
+
   return (
       <form className='card' onSubmit={(event) => submitUser(event, startAddress, endAddress, tripDate!)}>
+        <Autocomplete />
         <div>
           <input name='StartAddress' onChange={e => setStartAddress(e.target.value)} />
           <label htmlFor='StartAddress'>Start Address</label>

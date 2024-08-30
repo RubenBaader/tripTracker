@@ -5,8 +5,8 @@ const TripList = ({list} : {list : TripDto[] | undefined}) => {
         return(<ul></ul>)
     
     const listItems = (list.map(trip => 
-        <li>
-            from {trip.StartAddress} to {trip.EndAddress}
+        <li key={trip.id}>
+            from {trip.startAddress} to {trip.endAddress}
         </li>
     ))
 
