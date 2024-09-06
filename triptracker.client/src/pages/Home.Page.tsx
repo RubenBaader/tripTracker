@@ -6,19 +6,20 @@ import TripDto from "../../../triptracker.models/ts/tripDto"
 
 
 const Home = () => {
-    const storage = new storageService()
-
+    
     const [tripList, setTripList] = useState<TripDto[] | undefined>();
     
     useEffect(() => {
+        const storage = new storageService()
+
         async function getTrips() {
             const data = await storage.getTrips(1);
-            console.log("data:", data);
+            // console.log("data:", data);
             setTripList(data);
         }
 
         getTrips();
-    }, []);
+    }, [tripList]);
 
     return(
         <>
