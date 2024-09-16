@@ -6,7 +6,7 @@ import TripDto from '../../../triptracker.models/ts/tripDto'
 
 class storageService {
     /* Import urls from environment */
-    private readonly baseUrl = import.meta.env.VITE_SERVER_BASEURL;
+    // private readonly baseUrl = import.meta.env.VITE_SERVER_BASEURL;
     private readonly tripsUrl = import.meta.env.VITE_SERVER_BASEURL_TRIPS;
     private readonly userUrl = import.meta.env.VITE_SERVER_BASEURL_USER;
 
