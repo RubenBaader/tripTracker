@@ -1,5 +1,5 @@
 type TripDto = {
-    id : number,
+    id? : number,
     startAddress : string,
     endAddress : string,
     startTime : Date

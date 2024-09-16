@@ -1,10 +1,13 @@
 import storageService from "../services/storage.service";
 import TripDto from "../../../triptracker.models/ts/tripDto";
 import { FormEvent } from "react";
+import getGoogleRoute from "./GetRoute.Hook";
 
-function submitUser(event : FormEvent, startAddress : string, endAddress : string, date : Date) : void {
+async function createTrip(event : FormEvent, startAddress : string, endAddress : string, date : Date) : Promise<void> {
     event.preventDefault();
     const StorageService = new storageService();
+
+    await getGoogleRoute(startAddress, endAddress)
 
     const trip : TripDto =  {
         startAddress : startAddress,
@@ -16,4 +19,4 @@ function submitUser(event : FormEvent, startAddress : string, endAddress : strin
 
 }
 
-export default submitUser
+export default createTrip

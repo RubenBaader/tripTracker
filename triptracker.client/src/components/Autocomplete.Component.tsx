@@ -6,7 +6,7 @@ function autocomplete(elementId : string, stateFunc: (s : string) => void) : str
       type: "adgangsadresse",
       fuzzy: "true",
       select: function(selected : any) {
-        console.log('Valgt adresse: ' + selected.tekst);
+        // console.log('Valgt adresse: ' + selected.tekst);
         return stateFunc(selected.tekst);
       }
     })

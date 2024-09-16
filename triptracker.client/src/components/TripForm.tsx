@@ -1,4 +1,4 @@
-import submitUser from "../hooks/CreateTrip.hook"
+import createTrip from "../hooks/CreateTrip.hook"
 import { useEffect, useState } from "react"
 import Autocomplete from "./Autocomplete.Component";
 
@@ -13,7 +13,7 @@ export const TripForm = () => {
   }, [startAddress])
 
   return (
-      <form className='card' onSubmit={(event) => submitUser(event, startAddress, endAddress, tripDate!)}>
+      <form className='card' onSubmit={(event) => createTrip(event, startAddress, endAddress, tripDate!)}>
         <Autocomplete name="StartAddress" title="Start Address" stateSetter={setStartAddress} id="StartAddress" />
         <Autocomplete name="EndAddress" title="End Address" stateSetter={setEndAddress} id="EndAddress" />
         {/* <div>
