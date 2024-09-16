@@ -1,12 +1,13 @@
 
 async function getGoogleRoute(origin : string, destination : string) {
     const url = "https://routes.googleapis.com/directions/v2:computeRoutes";
+    const mapsKey = import.meta.env.VITE_MAPS_API_KEY
 
     const response = await fetch(url, {
         method: 'POST',
         headers: {
             "Content-Type" : "application/json",
-            "X-Goog-Api-Key" : import.meta.env.MAPS_API_KEY,
+            "X-Goog-Api-Key" : mapsKey,
             "X-Goog-FieldMask" : "routes.distanceMeters,",
         },
         body: JSON.stringify({
