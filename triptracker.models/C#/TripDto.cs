@@ -9,6 +9,7 @@ namespace TripTracker.Models
         public string EndAddress { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int? DistanceMeters { get; set; }
 
     }
 }

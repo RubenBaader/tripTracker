@@ -76,6 +76,7 @@ namespace TripTracker.Server.Repositories
                     EndAddress = tripDto.EndAddress,
                     StartTime = tripDto.StartTime,
                     EndTime = tripDto.EndTime,
+                    DistanceMeters = tripDto.DistanceMeters,
                     UserId = userId
                 };
 
@@ -110,6 +111,7 @@ namespace TripTracker.Server.Repositories
                                   EndAddress = trip.EndAddress,
                                   StartTime = trip.StartTime,
                                   EndTime = trip.EndTime,
+                                  DistanceMeters = trip.DistanceMeters,
                               }).ToListAsync();
 
             return data;

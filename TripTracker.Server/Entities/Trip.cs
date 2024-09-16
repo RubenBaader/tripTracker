@@ -15,11 +15,7 @@ namespace TripTracker.Server.Entities
         public string StartAddress { get; set; }
         public string EndAddress { get; set; }
 
-        //public int StartAddressId { get; set; }
-        //public Address StartAddress { get; set; }
-
-        //public int EndAddressId { get; set; }
-        //public Address EndAddress { get; set; }
+        public int? DistanceMeters { get; set; }
 
     }
 }

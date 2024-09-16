@@ -39,7 +39,7 @@ async function getGoogleRoute(origin : string, destination : string) {
     console.log("Response:", data);
     console.log("Route:", data.routes[0]);
 
-    return data;
+    return data.routes[0];
 }
 
 export default getGoogleRoute;

@@ -21,6 +21,8 @@ class storageService {
             payload.append("EndAddress", tripDto.endAddress);
             payload.append("StartTime", tripDto.startTime.toISOString());
             payload.append("EndTime", tripDto.endTime.toISOString());
+            if (tripDto.distanceMeters)
+                payload.append("DistanceMeters", tripDto.distanceMeters.toString());
 
             const response = await fetch(this.tripsUrl, {
                 method: "POST",

@@ -4,6 +4,7 @@ type TripDto = {
     endAddress : string,
     startTime : Date
     endTime : Date
+    distanceMeters? : number
 }
 
 export default TripDto;
