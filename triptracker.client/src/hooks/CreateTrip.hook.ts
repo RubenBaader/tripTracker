@@ -7,14 +7,14 @@ async function createTrip(event : FormEvent, startAddress : string, endAddress :
     event.preventDefault();
     const StorageService = new storageService();
 
-    const googleGetRoute = await getGoogleRoute(startAddress, endAddress);
+    const googleRoute = await getGoogleRoute(startAddress, endAddress);
 
     const trip : TripDto =  {
         startAddress : startAddress,
         endAddress : endAddress,
         startTime : date,
         endTime : date,
-        distanceMeters : googleGetRoute["distanceMeters"]
+        distanceMeters : googleRoute["distanceMeters"]
     }
 
     StorageService.createTrip(trip);
