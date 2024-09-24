@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Nodes;
+using System.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using TripTracker.Models;
 using TripTracker.Server.Entities;
@@ -21,9 +22,32 @@ namespace TripTracker.Server.Controllers
         [Route("test")]
         public async Task<ActionResult<string>> Test() 
         {
+            var cookieOptions = new CookieOptions();
+            cookieOptions.Secure = true;
+            cookieOptions.HttpOnly = true;
+            cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
+
+            var cookie = Request.Cookies["Hello"];
             
-            // var output = JsonConvert
-            return Ok(new Dictionary<string,JsonNode>{["Message"] = "I'm an endpoint, short and stout"});
+            if (cookie == null)
+            {
+
+                var response = new Dictionary<string, JsonNode> { ["Message"] = "I'm an endpoint, short and stout" };
+                Response.Cookies.Append("Hello", "1", cookieOptions);
+
+                return Ok(response);
+            }
+            else
+            {
+                int body = int.Parse(cookie);
+                body++;
+
+
+                Response.Cookies.Append("Hello", body.ToString(), cookieOptions);
+                //Response.Cookies.Delete("Hello");
+
+                return Ok(body);
+            }
         }
 
         [HttpGet]

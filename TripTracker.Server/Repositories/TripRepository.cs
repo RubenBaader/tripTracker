@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TripTracker.Models;
+using TripTracker.Server.Authentication.Contract;
 using TripTracker.Server.Data;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;
@@ -9,6 +10,7 @@ namespace TripTracker.Server.Repositories
     public class TripRepository : ITripRepository
     {
         private readonly TripDBContext tripDBContext;
+        
 
         public TripRepository(TripDBContext tripDBContext)
         {
@@ -16,16 +18,17 @@ namespace TripTracker.Server.Repositories
         }
 
         // Users
-        public async Task<string> CreateUser(string name, string email, string password)
+        public async Task<string> CreateUser(string name, string email, string hash, string salt)
         {
             try
             {
+
                 var user = new User
                 {
                     Name = name,
                     Email = email,
-                    Password = password,
-                    Salt = "xyz"
+                    Password = hash,
+                    Salt = salt
                 };
 
                 var data = await tripDBContext.Users.AddAsync(user);

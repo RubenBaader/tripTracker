@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TripTracker.Models;
+using TripTracker.Server.Authentication.Contract;
 using TripTracker.Server.Repositories.Contracts;
 
 namespace TripTracker.Server.Controllers
@@ -10,18 +11,28 @@ namespace TripTracker.Server.Controllers
     public class UserController : ControllerBase
     {
         private readonly ITripRepository tripRepository;
+        private readonly IServerAuthentication serverAuthentication;
 
-        public UserController(ITripRepository tripRepository)
+        public UserController(ITripRepository tripRepository,
+                        IServerAuthentication serverAuthentication)
         {
             this.tripRepository = tripRepository;
+            this.serverAuthentication = serverAuthentication;
         }
 
         [HttpPost]
+        [Route("create")]
         public async Task<ActionResult<string>> CreateUser(string name, string email, string password)
         {
             try
             {
-                var data = await tripRepository.CreateUser(name, email, password);
+                //TODO: verify username not taken
+
+
+                //get hash
+                var pwData = serverAuthentication.CreateHashedPassword(password);
+
+                var data = await tripRepository.CreateUser(name, email, hash: pwData.Hash, salt: pwData.Salt);
 
                 if (data == null)
                 {

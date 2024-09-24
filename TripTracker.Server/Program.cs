@@ -1,5 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
+using TripTracker.Server.Authentication;
+using TripTracker.Server.Authentication.Contract;
 using TripTracker.Server.Data;
 using TripTracker.Server.Repositories;
 using TripTracker.Server.Repositories.Contracts;
@@ -26,6 +28,7 @@ namespace TripTracker.Server
                 );
 
             builder.Services.AddScoped<ITripRepository, TripRepository>();
+            builder.Services.AddScoped<IServerAuthentication, ServerAuthentication>();
 
             builder.Services.AddCors(options =>
             {
