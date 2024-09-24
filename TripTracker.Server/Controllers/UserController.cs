@@ -28,7 +28,6 @@ namespace TripTracker.Server.Controllers
             {
                 //TODO: verify username not taken
 
-
                 //get hash
                 var pwData = serverAuthentication.CreateHashedPassword(password);
 

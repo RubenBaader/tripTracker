@@ -27,26 +27,21 @@ namespace TripTracker.Server.Controllers
             cookieOptions.HttpOnly = true;
             cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
 
-            var cookie = Request.Cookies["Hello"];
+            var cookie = Request.Cookies["User"];
             
             if (cookie == null)
             {
 
-                var response = new Dictionary<string, JsonNode> { ["Message"] = "I'm an endpoint, short and stout" };
-                Response.Cookies.Append("Hello", "1", cookieOptions);
-
-                return Ok(response);
+                return Forbid();
             }
             else
             {
-                int body = int.Parse(cookie);
-                body++;
+                string body = cookie;
 
-
-                Response.Cookies.Append("Hello", body.ToString(), cookieOptions);
+                Response.Cookies.Append("Hello", body, cookieOptions);
                 //Response.Cookies.Delete("Hello");
 
-                return Ok(body);
+                return Ok("Hello, " + body);
             }
         }
 
