@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TripTracker.Server.Authentication;
 using TripTracker.Server.Authentication.Contract;
@@ -27,6 +28,15 @@ namespace TripTracker.Server
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TripTrackerConnection"))
                 );
 
+            builder.Services.AddDbContextPool<ApplicationDbContext>(options => 
+                options.UseInMemoryDatabase("AppDb")
+                );
+
+            builder.Services.AddAuthorization();
+            
+            builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddScoped<ITripRepository, TripRepository>();
             builder.Services.AddScoped<IServerAuthentication, ServerAuthentication>();
 
@@ -41,6 +51,8 @@ namespace TripTracker.Server
             });
 
             var app = builder.Build();
+
+            app.MapIdentityApi<IdentityUser>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

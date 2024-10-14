@@ -32,7 +32,8 @@ namespace TripTracker.Server.Controllers
             if (cookie == null)
             {
 
-                return Forbid();
+                // return Forbid();
+                return Ok("No cookies");
             }
             else
             {
