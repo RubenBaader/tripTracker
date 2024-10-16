@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Nodes;
 using System.Web.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using TripTracker.Models;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;
@@ -18,6 +20,7 @@ namespace TripTracker.Server.Controllers
             this.tripRepository = tripRepository;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("test")]
         public async Task<ActionResult<string>> Test() 
@@ -27,10 +30,22 @@ namespace TripTracker.Server.Controllers
             cookieOptions.HttpOnly = true;
             cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
 
-            var cookie = Request.Cookies["User"];
-            
-            if (cookie == null)
-            {
+            //var cookie = Request.Cookies["User"];
+
+            //if (cookie == null)
+            //{
+
+            //    return Forbid();
+            //}
+            //else
+            //{
+            //    string body = cookie;
+
+            //    Response.Cookies.Append("Hello", body, cookieOptions);
+            //    //Response.Cookies.Delete("Hello");
+
+            //    return Ok("Hello, " + body);
+            //}
 
                 // return Forbid();
                 return Ok("No cookies");
@@ -39,18 +54,17 @@ namespace TripTracker.Server.Controllers
             {
                 string body = cookie;
 
-                Response.Cookies.Append("Hello", body, cookieOptions);
-                //Response.Cookies.Delete("Hello");
+            return Ok("Hello there");
 
-                return Ok("Hello, " + body);
-            }
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips(int userId)
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips()
         {
             try
             {
+                var userId = int.Parse(Request.Cookies["User"]);
+
                 var trips = await tripRepository.GetTrips(userId);
 
                 if (trips == null)
