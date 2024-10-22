@@ -30,31 +30,22 @@ namespace TripTracker.Server.Controllers
             cookieOptions.HttpOnly = true;
             cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
 
-            //var cookie = Request.Cookies["User"];
+            var cookie = Request.Cookies["User"];
 
-            //if (cookie == null)
-            //{
+            if (cookie == null)
+            {
 
-            //    return Forbid();
-            //}
-            //else
-            //{
-            //    string body = cookie;
-
-            //    Response.Cookies.Append("Hello", body, cookieOptions);
-            //    //Response.Cookies.Delete("Hello");
-
-            //    return Ok("Hello, " + body);
-            //}
-
-                // return Forbid();
-                return Ok("No cookies");
+                return Ok("No cookie");
             }
             else
             {
                 string body = cookie;
 
-            return Ok("Hello there");
+                Response.Cookies.Append("Hello", body, cookieOptions);
+                //Response.Cookies.Delete("Hello");
+
+                return Ok("Hello, " + body);
+            }
 
         }
 

@@ -29,13 +29,14 @@ namespace TripTracker.Server
                 );
 
             builder.Services.AddDbContextPool<ApplicationDbContext>(options => 
-                options.UseInMemoryDatabase("AppDb")
+                //options.UseInMemoryDatabase("AppDb")
+                options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
                 );
 
             builder.Services.AddAuthorization();
             
             builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+                        .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddScoped<ITripRepository, TripRepository>();
             builder.Services.AddScoped<IServerAuthentication, ServerAuthentication>();
