@@ -33,7 +33,7 @@ namespace TripTracker.Server.Controllers
 
             //var cookie = Request.Cookies["User"];
 
-            var email = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email);
+            var email = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
 
             if (email == null)
             {
@@ -53,13 +53,13 @@ namespace TripTracker.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips(string userId)
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTrips()
         {
             try
             {
-                //var userId = int.Parse(Request.Cookies["User"]);
+                var userIdClaim = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
 
-                var trips = await tripRepository.GetTrips(userId);
+                var trips = await tripRepository.GetTrips(userIdClaim.Value);
 
                 if (trips == null)
                 {
@@ -81,14 +81,14 @@ namespace TripTracker.Server.Controllers
         {
             try
             {
-                var userId = "fe17919b-29cd-48db-a2cd-49c78c949c04";
+                var userIdClaim = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
 
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                var newTrip = await tripRepository.SaveTrip(tripDto, userId);
+                var newTrip = await tripRepository.SaveTrip(tripDto, userIdClaim.Value);
 
                 if (newTrip == null)
                 {
