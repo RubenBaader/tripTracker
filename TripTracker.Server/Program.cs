@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TripTracker.Server.Authentication;
 using TripTracker.Server.Authentication.Contract;
 using TripTracker.Server.Data;
+using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories;
 using TripTracker.Server.Repositories.Contracts;
 
@@ -28,15 +29,10 @@ namespace TripTracker.Server
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TripTrackerConnection"))
                 );
 
-            builder.Services.AddDbContextPool<ApplicationDbContext>(options => 
-                //options.UseInMemoryDatabase("AppDb")
-                options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
-                );
-
             builder.Services.AddAuthorization();
-            
-            builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-                        .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddIdentityApiEndpoints<User>()
+                        .AddEntityFrameworkStores<TripDBContext>();
 
             builder.Services.AddScoped<ITripRepository, TripRepository>();
             builder.Services.AddScoped<IServerAuthentication, ServerAuthentication>();
@@ -53,7 +49,7 @@ namespace TripTracker.Server
 
             var app = builder.Build();
 
-            app.MapIdentityApi<IdentityUser>();
+            app.MapIdentityApi<User>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -64,17 +60,6 @@ namespace TripTracker.Server
 
             app.UseHttpsRedirection();
 
-            //app.UseCors(policy => 
-            //    policy.WithOrigins("http://localhost:5173/", "https://localhost:5173/")
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader()
-            //);
-
-            //app.UseCors(policy => 
-            //    policy.AllowAnyOrigin()
-            //    .AllowAnyHeader()
-            //    .AllowAnyMethod()
-            //);
             app.UseCors(CorsPolicy);
 
             app.UseAuthorization();

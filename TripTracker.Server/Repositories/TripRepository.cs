@@ -25,10 +25,10 @@ namespace TripTracker.Server.Repositories
 
                 var user = new User
                 {
-                    Name = name,
+                    //Name = name,
                     Email = email,
-                    Password = hash,
-                    Salt = salt
+                    //Password = hash,
+                    //Salt = salt
                 };
 
                 var data = await tripDBContext.Users.AddAsync(user);
@@ -69,7 +69,7 @@ namespace TripTracker.Server.Repositories
         }
 
         //Trips
-        public async Task<Trip> SaveTrip(TripDto tripDto, int userId)
+        public async Task<Trip> SaveTrip(TripDto tripDto, string userId)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace TripTracker.Server.Repositories
             
         }
 
-        public async Task<IEnumerable<TripDto>> GetTrips(int userId)
+        public async Task<IEnumerable<TripDto>> GetTrips(string userId)
         {
             var data = await (from trip in  tripDBContext.Trips
                               where trip.UserId == userId

@@ -10,8 +10,8 @@ namespace TripTracker.Server.Repositories.Contracts
         public Task<User> GetUser(int id);
         public Task DeleteUser(int id);
         // Trips
-        public Task<IEnumerable<TripDto>> GetTrips(int userId);
-        public Task<Trip> SaveTrip(TripDto dto, int userId);
+        public Task<IEnumerable<TripDto>> GetTrips(string userId);
+        public Task<Trip> SaveTrip(TripDto dto, string userId);
         public Task DeleteTrip(int tripId);
     }
 }

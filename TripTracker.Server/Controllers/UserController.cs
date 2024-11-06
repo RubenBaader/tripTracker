@@ -62,7 +62,7 @@ namespace TripTracker.Server.Controllers
                 var userDto = new UserDto
                 {
                     Id = id,
-                    Name = rawUser.Name,
+                    Name = rawUser.UserName,
                     Email = rawUser.Email,
                 };
 
