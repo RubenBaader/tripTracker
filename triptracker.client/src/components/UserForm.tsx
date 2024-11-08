@@ -14,11 +14,11 @@ const UserForm = () => {
                 <label htmlFor="name">Name</label>
             </div>
             <div>
-                <input type="email" name="email" onChange={e => setEmail(e.target.value)} />
+                <input required type="email" name="email" onChange={e => setEmail(e.target.value)} />
                 <label htmlFor="email">Email</label>
             </div>
             <div>
-                <input type="password" name="pass" onChange={e => setPassword(e.target.value)} />
+                <input required type="password" name="pass" onChange={e => setPassword(e.target.value)} />
                 <label htmlFor="password">Password</label>
             </div>
             

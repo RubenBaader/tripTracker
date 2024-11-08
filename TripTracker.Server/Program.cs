@@ -42,8 +42,10 @@ namespace TripTracker.Server
                 options.AddPolicy(name: CorsPolicy,
                                 policy =>
                                 {
-                                    policy.WithOrigins("http://localhost:5173", "https://localhost:5173")
-                                        .AllowAnyMethod();
+                                    policy.WithOrigins("http://localhost:5173", "https://localhost:5173", "https://localhost:7035", "http://localhost:7035")
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader()
+                                        .AllowCredentials();
                                 });
             });
 

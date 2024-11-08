@@ -13,7 +13,7 @@ const Home = () => {
         const storage = new storageService()
 
         async function getTrips() {
-            const data = await storage.getTrips(1);
+            const data = await storage.getTrips();
             // console.log("data:", data);
             setTripList(data);
         }

@@ -9,6 +9,7 @@ class storageService {
     // private readonly baseUrl = import.meta.env.VITE_SERVER_BASEURL;
     private readonly tripsUrl = import.meta.env.VITE_SERVER_BASEURL_TRIPS;
     private readonly userUrl = import.meta.env.VITE_SERVER_BASEURL_USER;
+    private readonly identityUrl = import.meta.env.VITE_SERVER_IDENTITY_URL;
 
     /**
      * Create a post request to server in order to store the trip input in the db
@@ -26,6 +27,7 @@ class storageService {
 
             const response = await fetch(this.tripsUrl, {
                 method: "POST",
+                credentials: "include",
                 body: payload
             })
 
@@ -54,12 +56,15 @@ class storageService {
     /**
      * Request all trips from server
      */
-    public async getTrips(userId : number) {
+    public async getTrips() {
         try {
-            const response = await fetch(this.tripsUrl + "?" + new URLSearchParams ({
+            /* const response = await fetch(this.tripsUrl + "?" + new URLSearchParams ({
                 "userId" : userId.toString()
                 })
-            )
+            ) */
+            const response = await fetch(this.tripsUrl, {
+                credentials: "include"
+            })
             const data : TripDto[] = await response.json()
 
             // console.log(data);
@@ -72,21 +77,32 @@ class storageService {
 
     public async createUser(name : string, email : string, password : string) {
         try {
-            const payload = new FormData();
+            const payload = {
+                "username" : name,
+                "email" : email,
+                "password" : password
+            }
 
-            payload.append("Name", name);
-            payload.append("Email", email);
-            payload.append("Password", password);
-
-            const response = await fetch(this.userUrl, {
+            const response = await fetch(this.identityUrl + "/register", {
                 method: "POST",
-                body: payload
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorMsg = await response.json();
+                console.log(response);
+                console.log(errorMsg);
+                console.log(errorMsg.errors.DuplicateUserName[0]);
+                return;
+                // throw new Error(`Registration failed with status: ${response.status}`);
+            }
 
-            console.log(data);
-            return data;
+            console.log("registration success!")
+
+            return;
             
         } catch (error) {
             console.log(error);
@@ -96,19 +112,31 @@ class storageService {
 
     public async login (nameOrEmail : string, password : string) {
         try {
-            const payload = new FormData();
+            const endPoint = this.identityUrl + "/login";
+            const query = "useCookies=true";
+            const requestUrl = endPoint + "?" + query;
 
-            payload.append("NameOrEmail", nameOrEmail);
-            payload.append("Password", password);
 
-            const response = await fetch(this.userUrl + "/login", {
+            const payload = {
+                "email": nameOrEmail,
+                "password" : password
+            }
+
+            const response = await fetch(requestUrl, {
                 method: "POST",
-                body: payload
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
+
+            if (!response.ok) {
+                throw new Error(`Login failed with status: ${response.status}`);
+            }
 
             const data = await response.json();
 
-            console.log(data);
+            console.log(response);
             return data;
 
         } catch (error) {
