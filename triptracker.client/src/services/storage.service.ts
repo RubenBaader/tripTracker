@@ -58,10 +58,6 @@ class storageService {
      */
     public async getTrips() {
         try {
-            /* const response = await fetch(this.tripsUrl + "?" + new URLSearchParams ({
-                "userId" : userId.toString()
-                })
-            ) */
             const response = await fetch(this.tripsUrl, {
                 credentials: "include"
             })
@@ -124,6 +120,7 @@ class storageService {
 
             const response = await fetch(requestUrl, {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -141,6 +138,19 @@ class storageService {
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    public async logout() {
+        const endPoint = this.identityUrl + "/logout"
+
+        const response = await fetch(endPoint, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({})
+        })
+        if(response.ok) {
+            console.log("logged out")
         }
     }
 }
