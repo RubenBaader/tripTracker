@@ -1,12 +1,11 @@
 import storageService from "../services/storage.service";
 import { FormEvent } from "react";
 
-function submitUser(event : FormEvent, name : string, email : string, password : string) {
+function submitUser(event : FormEvent, email : string, password : string) {
     event.preventDefault();
     const storage = new storageService();
 
-    storage.createUser(name, email, password);
-    // storage.test();
+    storage.createUser(email, password);
 }
 
 export default submitUser;

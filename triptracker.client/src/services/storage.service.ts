@@ -66,10 +66,9 @@ class storageService {
         }
     }
 
-    public async createUser(name : string, email : string, password : string) {
+    public async createUser(email : string, password : string) {
         try {
             const payload = {
-                "username" : name,
                 "email" : email,
                 "password" : password
             }
