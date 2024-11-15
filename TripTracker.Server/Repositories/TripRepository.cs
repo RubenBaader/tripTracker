@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TripTracker.Models;
-using TripTracker.Server.Authentication.Contract;
 using TripTracker.Server.Data;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;

@@ -1,9 +1,6 @@
-﻿using System.Security.Claims;
-using System.Text.Json.Nodes;
-using System.Web.Helpers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration.UserSecrets;
+using System.Security.Claims;
 using TripTracker.Models;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;

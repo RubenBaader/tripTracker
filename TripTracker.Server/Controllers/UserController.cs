@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using TripTracker.Models;
-using TripTracker.Server.Authentication.Contract;
-using TripTracker.Server.Repositories.Contracts;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TripTracker.Server.Entities;
 
 namespace TripTracker.Server.Controllers
