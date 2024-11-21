@@ -6,12 +6,11 @@ import TripDto from '../../../triptracker.models/ts/tripDto'
 
 class storageService {
     /* Import urls from environment */
-    // private readonly baseUrl = import.meta.env.VITE_SERVER_BASEURL;
     private readonly tripsUrl = import.meta.env.VITE_SERVER_BASEURL_TRIPS;
-    private readonly userUrl = import.meta.env.VITE_SERVER_BASEURL_USER;
+    private readonly identityUrl = import.meta.env.VITE_SERVER_IDENTITY_URL;
 
     /**
-     * Create a post request to server in order to store the trip input in the db
+     * Create a post request to server to store the trip input in the db
      */
     public async createTrip (tripDto : TripDto) {
         try {
@@ -26,6 +25,7 @@ class storageService {
 
             const response = await fetch(this.tripsUrl, {
                 method: "POST",
+                credentials: "include",
                 body: payload
             })
 
@@ -41,78 +41,107 @@ class storageService {
     }
 
     /**
-     * Test connection
-     **/
-    public async test() : Promise<string> {
-
-        const response = await fetch(import.meta.env.VITE_SERVER_BASEURL_TRIPS + "/test");
-        console.log(response);
-        const data = await response.json();
-        return data;
-    }
-
-    /**
-     * Request all trips from server
+     * Request all trips from server using user credentials
      */
-    public async getTrips(userId : number) {
+    public async getTrips() {
         try {
-            const response = await fetch(this.tripsUrl + "?" + new URLSearchParams ({
-                "userId" : userId.toString()
-                })
-            )
-            const data : TripDto[] = await response.json()
+            const response = await fetch(this.tripsUrl, {
+                credentials: "include"
+            })
 
-            // console.log(data);
-
-            return data;
+            if (response.status == 401) {
+                console.log("not authorized")
+                return;
+            }
+            if (response.ok){
+                const data : TripDto[] = await response.json()
+                return data;
+            }
+            else {
+                console.log(`Getting trips failed with status: ${response.status}`)
+                return;
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
-    public async createUser(name : string, email : string, password : string) {
+    public async createUser(email : string, password : string) {
         try {
-            const payload = new FormData();
+            const payload = {
+                "email" : email,
+                "password" : password
+            }
 
-            payload.append("Name", name);
-            payload.append("Email", email);
-            payload.append("Password", password);
-
-            const response = await fetch(this.userUrl, {
+            const response = await fetch(this.identityUrl + "/register", {
                 method: "POST",
-                body: payload
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorMsg = await response.json();
+                console.log(errorMsg);
+                console.log(errorMsg.errors.DuplicateUserName[0]);
+                return;
+            }
 
-            console.log(data);
-            return data;
-            
-        } catch (error) {
+            console.log("registration success!")
+
+            return;
+        } 
+        catch (error) {
             console.log(error);
         }
-
     }
 
     public async login (nameOrEmail : string, password : string) {
         try {
-            const payload = new FormData();
+            const endPoint = this.identityUrl + "/login";
+            const query = "useCookies=true";
+            const requestUrl = endPoint + "?" + query;
 
-            payload.append("NameOrEmail", nameOrEmail);
-            payload.append("Password", password);
+            const payload = {
+                "email": nameOrEmail,
+                "password" : password
+            }
 
-            const response = await fetch(this.userUrl + "/login", {
+            const response = await fetch(requestUrl, {
                 method: "POST",
-                body: payload
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
 
-            const data = await response.json();
-
-            console.log(data);
-            return data;
+            if (!response.ok) {
+                console.log(`Login failed with status: ${response.status}`);
+            }
+            else {
+                console.log("logged in")
+            }
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    public async logout() {
+        const endPoint = this.identityUrl + "/logout"
+
+        const response = await fetch(endPoint, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({})
+        })
+        if(response.ok) {
+            console.log("logged out")
+        }
+        else {
+            console.log(`logout attempt failed with error: ${response.status}`)
         }
     }
 }

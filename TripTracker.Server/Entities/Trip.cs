@@ -8,7 +8,7 @@ namespace TripTracker.Server.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
 

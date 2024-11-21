@@ -1,4 +1,5 @@
 import LoginForm from "../components/LoginForm";
+import LogoutButton from "../components/LogoutButton";
 
 
 const Login = () => {
@@ -6,6 +7,8 @@ const Login = () => {
         <>
             <h1>Login</h1>
             <LoginForm />
+            <p>or logout?</p>
+            <LogoutButton />
         </>
     )
 }

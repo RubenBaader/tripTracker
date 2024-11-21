@@ -1,14 +1,13 @@
-﻿using System.Text.Json.Nodes;
-using System.Web.Helpers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration.UserSecrets;
+using System.Security.Claims;
 using TripTracker.Models;
 using TripTracker.Server.Entities;
 using TripTracker.Server.Repositories.Contracts;
 
 namespace TripTracker.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TripsController : ControllerBase
@@ -20,31 +19,32 @@ namespace TripTracker.Server.Controllers
             this.tripRepository = tripRepository;
         }
 
-        [Authorize]
         [HttpGet]
         [Route("test")]
         public async Task<ActionResult<string>> Test() 
         {
-            var cookieOptions = new CookieOptions();
-            cookieOptions.Secure = true;
-            cookieOptions.HttpOnly = true;
-            cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
+            //var cookieOptions = new CookieOptions();
+            //cookieOptions.Secure = true;
+            //cookieOptions.HttpOnly = true;
+            //cookieOptions.Expires = DateTimeOffset.UtcNow.AddMinutes(50);
 
-            var cookie = Request.Cookies["User"];
+            //var cookie = Request.Cookies["User"];
 
-            if (cookie == null)
+            var email = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
+
+            if (email == null)
             {
 
                 return Ok("No cookie");
             }
             else
             {
-                string body = cookie;
+                //string body = cookie;
 
-                Response.Cookies.Append("Hello", body, cookieOptions);
+                //Response.Cookies.Append("Hello", body, cookieOptions);
                 //Response.Cookies.Delete("Hello");
 
-                return Ok("Hello, " + body);
+                return Ok("Let's compare fe17919b-29cd-48db-a2cd-49c78c949c04 to " + email.Value);
             }
 
         }
@@ -54,9 +54,9 @@ namespace TripTracker.Server.Controllers
         {
             try
             {
-                var userId = int.Parse(Request.Cookies["User"]);
+                var userIdClaim = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
 
-                var trips = await tripRepository.GetTrips(userId);
+                var trips = await tripRepository.GetTrips(userIdClaim.Value);
 
                 if (trips == null)
                 {
@@ -78,14 +78,14 @@ namespace TripTracker.Server.Controllers
         {
             try
             {
-                var userId = 1;
+                var userIdClaim = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier);
 
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                var newTrip = await tripRepository.SaveTrip(tripDto, userId);
+                var newTrip = await tripRepository.SaveTrip(tripDto, userIdClaim.Value);
 
                 if (newTrip == null)
                 {

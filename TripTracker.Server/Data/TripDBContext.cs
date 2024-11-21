@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TripTracker.Server.Entities;
 
 namespace TripTracker.Server.Data
 {
-    public class TripDBContext : DbContext
+    public class TripDBContext : IdentityDbContext<User>
     {
         public TripDBContext(DbContextOptions<TripDBContext> options) : base(options)
         {
@@ -18,7 +19,7 @@ namespace TripTracker.Server.Data
                 .HasOne(t => t.User)
                 .WithMany(t => t.Trips)
                 .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             //modelBuilder.Entity<Trip>()
                 //.HasOne(t => t.StartAddress)
@@ -36,7 +37,8 @@ namespace TripTracker.Server.Data
                 .HasOne(t => t.User)
                 .WithMany(t => t.Addresses)
                 .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
 
         public DbSet<User> Users { get; set; }

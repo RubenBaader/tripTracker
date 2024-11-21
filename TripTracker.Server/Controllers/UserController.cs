@@ -1,77 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TripTracker.Models;
-using TripTracker.Server.Authentication.Contract;
-using TripTracker.Server.Repositories.Contracts;
+using TripTracker.Server.Entities;
 
 namespace TripTracker.Server.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ITripRepository tripRepository;
-        private readonly IServerAuthentication serverAuthentication;
+        private readonly SignInManager<User> signInManager;
 
-        public UserController(ITripRepository tripRepository,
-                        IServerAuthentication serverAuthentication)
+        public UserController(SignInManager<User> signInManager)
         {
-            this.tripRepository = tripRepository;
-            this.serverAuthentication = serverAuthentication;
+            this.signInManager = signInManager;
         }
 
+        [Authorize]
         [HttpPost]
-        [Route("create")]
-        public async Task<ActionResult<string>> CreateUser(string name, string email, string password)
+        [Route("logout")]
+        public async Task<ActionResult> Logout()
         {
-            try
-            {
-                //TODO: verify username not taken
-
-                //get hash
-                var pwData = serverAuthentication.CreateHashedPassword(password);
-
-                var data = await tripRepository.CreateUser(name, email, hash: pwData.Hash, salt: pwData.Salt);
-
-                if (data == null)
-                {
-                    return BadRequest();
-                }
-
-                return Ok(data);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<UserDto>> GetUser(int id)
-        {
-            try
-            {
-                var rawUser = await tripRepository.GetUser(id);
-
-                if (rawUser == null)
-                {
-                    return NoContent();
-                }
-
-                var userDto = new UserDto
-                {
-                    Id = id,
-                    Name = rawUser.Name,
-                    Email = rawUser.Email,
-                };
-
-                return Ok(userDto);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
+            await signInManager.SignOutAsync();
+            return Ok();
         }
     }
 }
