@@ -23,10 +23,7 @@ dist-ssr
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 *.sw?
-/TripTracker.Server/appsettings.json
-/TripTracker.Server/obj
 
 
 ## Ignore Visual Studio temporary files, build results, and
