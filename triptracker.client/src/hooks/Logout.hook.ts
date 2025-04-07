@@ -1,7 +1,7 @@
 import storageService from "../services/storage.service";
 
 function logout () {
-    const storage = new storageService();
+    const storage = storageService;
 
     storage.logout();
 }

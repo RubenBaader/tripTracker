@@ -5,7 +5,7 @@ import getGoogleRoute from "./GetRoute.Hook";
 
 async function createTrip(event : FormEvent, startAddress : string, endAddress : string, date : Date) : Promise<void> {
     event.preventDefault();
-    const StorageService = new storageService();
+    const StorageService = storageService;
 
     const googleRoute = await getGoogleRoute(startAddress, endAddress);
 
