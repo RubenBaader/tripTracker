@@ -1,8 +1,15 @@
-import logout from "../hooks/Logout.hook"
+import { useAppContext } from "../contexts/App.Context";
+import logout from "../utils/Logout.util"
 
-const LogoutButton : React.FunctionComponent = () => {
+interface buttonProp {
+    className? : string
+}
+
+const LogoutButton : React.FunctionComponent<buttonProp> = ({className}) => {
+    const contextLogout = useAppContext().logout;
+
     return(
-        <button onClick={logout}>Logout</button>
+        <button className={className} onClick={() => logout(contextLogout)}>Logout</button>
     )
 }
 

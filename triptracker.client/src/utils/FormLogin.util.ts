@@ -2,8 +2,10 @@ import { FormEvent } from "react";
 import storageService from "../services/storage.service";
 
 async function formLogin(
-    event : FormEvent, nameOrEmail : string, password : string, 
-    contextUpdate : (input : string) => void, 
+    event : FormEvent, 
+    nameOrEmail : string, 
+    password : string, 
+    updateContext : (input : string) => void, 
     setErrorMsg : (s : string | null) => void
     ) 
 {
@@ -13,7 +15,7 @@ async function formLogin(
     const isLoggedIn = await login(nameOrEmail, password);
 
     if (isLoggedIn) {
-        contextUpdate(nameOrEmail);
+        updateContext(nameOrEmail);
     }
     else {
         setErrorMsg("Wrong username or password")

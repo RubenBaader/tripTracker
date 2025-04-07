@@ -7,6 +7,7 @@ import Login from './pages/Login.Page'
 import CreateUser from './pages/CreateUser.Page'
 import { AppContextProvider } from './contexts/App.Context'
 import ProtectedRoutes from './routes/ProtectedRoute'
+import LogoutButton from './components/LogoutButton'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route index element={ <Home /> } />
             </Route>
             <Route path='login' element={ <Login /> } />
+            <Route path='logout' element={ <LogoutButton /> } />
             <Route path='create' element={<CreateUser /> } />
             <Route path='*' element={ <ErrorPage /> } />
           </Route>
