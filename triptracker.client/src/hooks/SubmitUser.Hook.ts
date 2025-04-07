@@ -3,7 +3,7 @@ import { FormEvent } from "react";
 
 function submitUser(event : FormEvent, email : string, password : string) {
     event.preventDefault();
-    const storage = new storageService();
+    const storage = storageService;
 
     storage.createUser(email, password);
 }

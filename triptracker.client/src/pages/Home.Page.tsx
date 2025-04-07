@@ -10,7 +10,7 @@ const Home = () => {
     const [tripList, setTripList] = useState<TripDto[] | undefined>();
     
     useEffect(() => {
-        const storage = new storageService()
+        const storage = storageService
 
         async function getTrips() {
             const data = await storage.getTrips();

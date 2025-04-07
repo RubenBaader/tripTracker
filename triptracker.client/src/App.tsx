@@ -5,18 +5,24 @@ import ErrorPage from './pages/Error.Page'
 import Home from './pages/Home.Page'
 import Login from './pages/Login.Page'
 import CreateUser from './pages/CreateUser.Page'
+import { AppContextProvider } from './contexts/App.Context'
+import ProtectedRoutes from './routes/ProtectedRoute'
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={ <Home /> } />
-          <Route path='login' element={ <Login /> } />
-          <Route path='create' element={<CreateUser /> } />
-          <Route path='*' element={ <ErrorPage /> } />
-        </Route>
-      </Routes>
+      <AppContextProvider>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route element={<ProtectedRoutes />}> 
+              <Route index element={ <Home /> } />
+            </Route>
+            <Route path='login' element={ <Login /> } />
+            <Route path='create' element={<CreateUser /> } />
+            <Route path='*' element={ <ErrorPage /> } />
+          </Route>
+        </Routes>
+      </AppContextProvider>
     </BrowserRouter>
   )
 }
