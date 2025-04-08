@@ -1,4 +1,5 @@
 import TripDto from '../../../triptracker.models/ts/tripDto'
+import TripDtoResponse from '../../../triptracker.models/ts/tripDtoResponse'
 
 
 /* Import urls from environment */
@@ -11,6 +12,24 @@ const storageService = {
     createUser,
     login,
     logout
+}
+
+async function parseDtoList(response : Response) : Promise<TripDto[]> {
+    const data = await response.json();
+
+    const dtos : TripDto[] = data.map((item : TripDtoResponse) => (
+        {...item,
+         startTime : new Date(item.startTime),
+         endTime : new Date(item.endTime)
+        }
+    ))
+    /* const dto : TripDto = {
+        ...data,
+        startTime : new Date(data.startTime),
+        endTime : new Date(data.endTime),
+    } */
+
+    return dtos;
 }
 
 /**
@@ -58,7 +77,8 @@ async function getTrips() {
             return;
         }
         if (response.ok){
-            const data : TripDto[] = await response.json()
+            const data = await parseDtoList(response);
+            // const data : TripDto[] = await response.json()
             return data;
         }
         else {
